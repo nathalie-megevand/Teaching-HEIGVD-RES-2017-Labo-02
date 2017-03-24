@@ -27,46 +27,45 @@ public class RouletteV1ClientImpl implements IRouletteV1Client
 
   private static final Logger LOG = Logger.getLogger(RouletteV1ClientImpl.class.getName());
 
-  // socket for server connection
-  private Socket serverSocket = null;
-  // input from server
+  // Socket for connection on the server
+  private Socket communicationSocket = null;
+  // Input from server
   private BufferedReader buffReader = null;
-  protected PrintWriter printWriter = null;
+  private PrintWriter printWriter = null;
 
 
 
   @Override
   public void connect(String server, int port) throws IOException {
-  	 //we open a connection with the serveur
-      serverSocket = new Socket(server, port);
-      // we open a input and a ouput stream
-      printWriter = new PrintWriter(new OutputStreamWriter(serverSocket.getOutputStream()));
-      buffReader = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+      // Openning a connection with the server
+      communicationSocket = new Socket(server, port);
+      // Openning an input and an ouput stream
+      printWriter = new PrintWriter(new OutputStreamWriter(communicationSocket.getOutputStream()));
+      buffReader = new BufferedReader(new InputStreamReader(communicationSocket.getInputStream()));
 
-      //read the welcomme message on the serveur
+      // Reading the welcomme message on the serveur
 	  buffReader.readLine();
   }
 
   @Override
   public void disconnect() throws IOException {
-  	//send the message BYE
+    // Sending the message BYE to signify end of connection
     printWriter.println(RouletteV1Protocol.CMD_BYE);
     printWriter.flush();
 
-    //close the input and ouput stream
+    // Closing the input and output stream
 	printWriter.close();
     buffReader.close();
-    //close the connection with the server
-    serverSocket.close();
+    // Closing the connection with server
+    communicationSocket.close();
   }
 
   @Override
   public boolean isConnected()
   {
-
-      if (serverSocket != null)
+      if (communicationSocket != null)
       {
-        return serverSocket.isConnected() && !serverSocket.isClosed();
+        return communicationSocket.isConnected() && !communicationSocket.isClosed();
       }
       else
       {
@@ -76,6 +75,7 @@ public class RouletteV1ClientImpl implements IRouletteV1Client
 
   @Override
   public void loadStudent(String fullname) throws IOException {
+    // Constructing a list of only one student
     ArrayList<Student> studentsList = new ArrayList<Student>();
     studentsList.add(new Student(fullname));
     loadStudents(studentsList);
@@ -84,43 +84,47 @@ public class RouletteV1ClientImpl implements IRouletteV1Client
   @Override
   public void loadStudents(List<Student> students) throws IOException
   {
-	  //display loading message
+	  
+          // Sends the signal for the beginning of the loading process
 	  printWriter.println(RouletteV1Protocol.CMD_LOAD);
 	  printWriter.flush();
 
-	  //test if the server respond correctly
+	  // Tests if the server is ready and waiting for the data
 	  if(!buffReader.readLine().equalsIgnoreCase(RouletteV1Protocol.RESPONSE_LOAD_START))
 		  throw new IOException("Error during the loading !");
 
-	  //browse all the students
+	  // Sends the students name by name
 	  for(Student currentStudent : students)
 	  {
-		  //test if the fullName is not empty
+		  // Do not sends empty strings
 		  if (currentStudent.getFullname().length() >= 1)
 		  {
-			  //display full name
+			  // Sends full name
 			  printWriter.println(currentStudent.getFullname());
 		  }
 	  }
 
-	  //announced the end of the transfert with ENDOFDATA
+	  // Signifies the end of the transfert with ENDOFDATA
 	  printWriter.println(RouletteV1Protocol.CMD_LOAD_ENDOFDATA_MARKER);
 	  printWriter.flush();
-	  //read the message from the server who announced the end of data reception
+          
+	  // Waits for commfirmation of the server
+          // TODO : think of what to do if server do not send DATA LOADED...
 	  buffReader.readLine();
+          
   }
 
   @Override
   public Student pickRandomStudent() throws EmptyStoreException, IOException
   {
-  	//we send a message to the server . This message say random because we want obtain a random student
+  	  // Asking for random student
 	  printWriter.println(RouletteV1Protocol.CMD_RANDOM);
 	  printWriter.flush();
 
-	  //we receive the answer from the server
+	  // Reading the answer given by he server
 	  RandomCommandResponse response = JsonObjectMapper.parseJson(buffReader.readLine(), RandomCommandResponse.class);
 
-	  //test if the reponse from the server is correct
+	  // Testing the validity of the answer
 	   if(response.getError() != null)
 	  {
 		  throw new EmptyStoreException();
@@ -135,21 +139,26 @@ public class RouletteV1ClientImpl implements IRouletteV1Client
   @Override
   public int getNumberOfStudents() throws IOException
   {
-	  //we send the message info to the server
+	  // Asking for the info stored on the server
 	  printWriter.println(RouletteV1Protocol.CMD_INFO);
 	  printWriter.flush();
-
-	  InfoCommandResponse response = JsonObjectMapper.parseJson(buffReader.readLine(), InfoCommandResponse.class);
+          
+          // Parsing the answer for the number of students
+	  InfoCommandResponse response = JsonObjectMapper.parseJson(buffReader.readLine(),
+                                                                    InfoCommandResponse.class);
 	  return response.getNumberOfStudents();
   }
 
   @Override
   public String getProtocolVersion() throws IOException
   {
-	  //we send the message info to the server
+	  // Asking for the info stored on the server
 	  printWriter.println(RouletteV1Protocol.CMD_INFO);
 	  printWriter.flush();
-	  InfoCommandResponse info = JsonObjectMapper.parseJson(buffReader.readLine(), InfoCommandResponse.class);
+          
+          // Parsing the answer for the version number of the protocol
+	  InfoCommandResponse info = JsonObjectMapper.parseJson(buffReader.readLine(),
+                                                                InfoCommandResponse.class);
 	  return info.getProtocolVersion();
   }
 }
