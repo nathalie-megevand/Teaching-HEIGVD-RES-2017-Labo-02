@@ -24,6 +24,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -41,13 +42,13 @@ public class RouletteV2nathalie_megevandTest {
   @Rule
   public EphemeralClientServerPair roulettePair = new EphemeralClientServerPair(RouletteV2Protocol.VERSION);
   
-    
+    @Ignore
     @Test
     @TestAuthor(githubId = "nathalie-megevand")
     public void INFOShouldReturnCorrectVersionNumber() throws IOException {
     assertEquals(RouletteV2Protocol.VERSION, roulettePair.getClient().getProtocolVersion());
 } 
-      
+    @Ignore  
     @Test
     @TestAuthor(githubId = "nathalie-megevand")
     public void ConnectionOnV1PortShouldNotReturnV2VersionNumber() throws IOException {
@@ -71,7 +72,7 @@ public class RouletteV2nathalie_megevandTest {
 	  assertNotEquals(RouletteV1Protocol.VERSION, info.getProtocolVersion());
     }
     
-    
+    @Ignore
     @Test
     @TestAuthor(githubId = "nathalie-megevand")
     public void CLEARShouldLeaveServerWithAnEmptyList() throws IOException {
@@ -83,6 +84,7 @@ public class RouletteV2nathalie_megevandTest {
         assertEquals(0, roulettePair.getClient().getNumberOfStudents());
     }
     
+    @Ignore
     @Test
     @TestAuthor(githubId = "nathalie-megevand")
     public void LOADShouldReturnCorrectNUmberOfStudents() throws IOException {
@@ -130,6 +132,7 @@ public class RouletteV2nathalie_megevandTest {
                        buffReader.readLine());
     }
     
+    @Ignore
     @Test
     @TestAuthor(githubId = "nathalie-megevand")
     public void BYEShouldReturnCorrectNumberOfCommend() throws IOException {
