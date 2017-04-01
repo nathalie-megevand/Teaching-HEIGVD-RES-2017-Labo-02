@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
 
 /**
  * This class contains automated tests to validate the client and the server
