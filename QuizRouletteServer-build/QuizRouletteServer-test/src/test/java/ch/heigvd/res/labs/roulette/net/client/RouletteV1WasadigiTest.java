@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
+import org.junit.Ignore;
 
 /**
  * This class contains automated tests to validate the client and the server
