@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
 
 /**
  * Tests for V2 protocol
@@ -43,6 +44,7 @@ public class RouletteV2kkoPSTest {
      * creates a client, loads 2 students, checks if number of students is 2, then clears and check if number of students is 0
      * @throws IOException
      */
+    @Ignore
     @Test
     @TestAuthor (githubId = {"kkoPS", "antoineNourZaf"})
     public void noMoreStudentsInServerAfterCallingMethodClearDataStore() throws IOException {

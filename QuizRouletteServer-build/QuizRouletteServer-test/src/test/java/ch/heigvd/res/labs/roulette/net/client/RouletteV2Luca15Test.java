@@ -21,7 +21,6 @@ import static org.junit.Assert.*;
  * @author Luca Sivillica
  * @author Dany Tchente
  */
-@Ignore
 public class RouletteV2Luca15Test {
 
 

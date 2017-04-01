@@ -21,7 +21,6 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Arnold von Bauer Gauss
  */
-@Ignore
 public class RouletteV2GaussianBlursTest {
 
     @Rule

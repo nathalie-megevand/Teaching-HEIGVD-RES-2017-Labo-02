@@ -37,7 +37,6 @@ public class RouletteV2X4l1b1Test {
     @Test
     @TestAuthor(githubId = {"yosra-harbaoui", "X4l1b1"})
     public void theServerDefaultPortShouldBeRight() throws IOException {
-
         assertEquals(RouletteV2Protocol.DEFAULT_PORT, 2613);
     }
 

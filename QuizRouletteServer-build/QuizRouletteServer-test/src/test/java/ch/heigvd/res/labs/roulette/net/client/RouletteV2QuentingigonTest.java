@@ -20,7 +20,6 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Olivier Liechti
  */
-@Ignore
 public class RouletteV2QuentingigonTest {
 
   @Rule
@@ -72,7 +71,8 @@ public class RouletteV2QuentingigonTest {
     client.loadStudent("olivier");
     client.loadStudent("fabienne");
 
-    assertTrue(client.listStudents().contains(new Student("sasha")));
+    
+    assertTrue(client.listStudents().contains(new Student("sacha")));
     assertTrue(client.listStudents().contains(new Student("olivier")));
     assertTrue(client.listStudents().contains(new Student("fabienne")));
   }

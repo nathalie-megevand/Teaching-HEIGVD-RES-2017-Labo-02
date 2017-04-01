@@ -2,16 +2,13 @@ package ch.heigvd.res.labs.roulette.net.client;
 
 import ch.heigvd.res.labs.roulette.data.EmptyStoreException;
 import ch.heigvd.res.labs.roulette.net.protocol.RouletteV1Protocol;
+import ch.heigvd.res.labs.roulette.net.protocol.RouletteV2Protocol;
 import ch.heigvd.schoolpulse.TestAuthor;
 import java.io.IOException;
-
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import org.junit.Ignore;
 
 /**
  * This class contains automated tests to validate the client and the server
@@ -19,7 +16,6 @@ import org.junit.Ignore;
  * 
  * @author Olivier Liechti
  */
-@Ignore
 public class RouletteV1WasadigiTest {
 
   @Rule

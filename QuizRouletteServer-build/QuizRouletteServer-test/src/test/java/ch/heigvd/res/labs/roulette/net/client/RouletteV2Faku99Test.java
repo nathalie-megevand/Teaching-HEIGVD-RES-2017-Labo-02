@@ -22,7 +22,6 @@ import static org.junit.Assert.*;
  * @author Lucas ELISEI (faku99)
  * @author David TRUAN  (Daxidz)
  */
-@Ignore
 public class RouletteV2Faku99Test {
 
     @Rule

@@ -22,7 +22,6 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Zeller Quentin
  */
-@Ignore
 public class RouletteV2qrzellerTest {
 
     @Rule
@@ -36,8 +35,7 @@ public class RouletteV2qrzellerTest {
     @TestAuthor(githubId = "qrzeller")
     public void checkTheServerParameter() throws IOException {
 
-        assert roulettePair.getServer().getPort() == RouletteV2Protocol.DEFAULT_PORT &&
-                RouletteV2Protocol.DEFAULT_PORT == 2613
+        assert RouletteV2Protocol.DEFAULT_PORT == 2613
                 : "The server should have the correct port...";
 
         assert roulettePair.getClient().getProtocolVersion().equals(RouletteV2Protocol.VERSION) :

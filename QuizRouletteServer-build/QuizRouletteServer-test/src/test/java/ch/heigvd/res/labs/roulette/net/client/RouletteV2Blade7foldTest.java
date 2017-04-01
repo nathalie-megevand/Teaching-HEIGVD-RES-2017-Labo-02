@@ -26,7 +26,6 @@ import org.junit.rules.ExpectedException;
  *
  * @author Nathan
  */
-@Ignore
 public class RouletteV2Blade7foldTest {
     
     @Rule
@@ -36,6 +35,7 @@ public class RouletteV2Blade7foldTest {
      * Test of clearDataStore method, of class RouletteV2ClientImpl.
      * @throws java.io.IOException
      */
+    @Ignore
     @Test
     @TestAuthor(githubId = "Blade7fold")
     public void theMethodShouldClearCorrectlyTheStudentsInTheServer() throws IOException {
@@ -53,6 +53,7 @@ public class RouletteV2Blade7foldTest {
      * Test of listStudents method, of class RouletteV2ClientImpl.
      * @throws java.io.IOException
      */
+    @Ignore
     @Test
     @TestAuthor(githubId = "Blade7fold")
     public void theServerShouldReturnTheCorrectListOfStudents() throws IOException {
@@ -79,6 +80,7 @@ public class RouletteV2Blade7foldTest {
      * of class RouletteV2ClientImpl.
      * @throws java.io.IOException
      */
+    @Ignore
     @Test
     @TestAuthor(githubId = "Blade7fold")
     public void theServerShouldReturnTheCorrectNumberOFStudents() throws IOException {

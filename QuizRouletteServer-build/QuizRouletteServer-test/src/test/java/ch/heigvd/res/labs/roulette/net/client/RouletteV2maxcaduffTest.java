@@ -51,8 +51,8 @@ public class RouletteV2maxcaduffTest {
         server.startServer();
         RouletteV2ClientImpl client = new RouletteV2ClientImpl();
         client.connect("localhost", RouletteV2Protocol.DEFAULT_PORT );
-
         assertTrue(client.isConnected());
+        server.stopServer();
     }
 
 

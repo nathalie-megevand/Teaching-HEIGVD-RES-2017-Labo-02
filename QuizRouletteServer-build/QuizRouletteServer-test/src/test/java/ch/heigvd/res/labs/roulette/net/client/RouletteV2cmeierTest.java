@@ -38,10 +38,9 @@ public class RouletteV2cmeierTest {
   @TestAuthor(githubId = {"c-meier", "danpa32"})
   public void theServerShouldHaveTheRightPort() throws IOException {
     RouletteServer server = new RouletteServer(RouletteV2Protocol.DEFAULT_PORT, RouletteV2Protocol.VERSION);
-
     server.startServer();
-
     assertEquals(2613, server.getPort());
+    server.stopServer();
   }
 
   @Test

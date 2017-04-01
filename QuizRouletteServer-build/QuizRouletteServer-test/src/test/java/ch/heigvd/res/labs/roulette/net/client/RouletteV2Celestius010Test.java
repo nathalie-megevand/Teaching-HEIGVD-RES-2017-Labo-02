@@ -19,7 +19,6 @@ import java.util.List;
  *
  * @author Benoit Gianinetti
  */
-@Ignore
 public class RouletteV2Celestius010Test {
     @Rule
     public ExpectedException exception = ExpectedException.none();
