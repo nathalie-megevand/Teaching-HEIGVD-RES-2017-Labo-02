@@ -3,6 +3,7 @@ package ch.heigvd.res.labs.roulette.net.client;
 import ch.heigvd.res.labs.roulette.data.JsonObjectMapper;
 import ch.heigvd.res.labs.roulette.data.Student;
 import ch.heigvd.res.labs.roulette.data.StudentsList;
+import ch.heigvd.res.labs.roulette.net.protocol.RouletteV2Protocol;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +25,7 @@ public class RouletteV2ClientImpl extends RouletteV1ClientImpl implements IRoule
     LOG.log(Level.FINE, "Clear the Data Store");
 
     // Ask the server to clear the Data Store
-	  printWriter.println(RouletteV2Protocol.CLEAR);
+	  printWriter.println(RouletteV2Protocol.CMD_CLEAR);
 	  printWriter.flush();
 	  buffReader.readLine();
   }
