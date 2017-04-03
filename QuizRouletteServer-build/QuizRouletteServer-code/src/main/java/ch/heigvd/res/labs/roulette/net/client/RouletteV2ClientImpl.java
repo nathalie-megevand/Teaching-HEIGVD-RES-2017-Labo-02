@@ -24,7 +24,7 @@ public class RouletteV2ClientImpl extends RouletteV1ClientImpl implements IRoule
     LOG.log(Level.FINE, "Clear the Data Store");
 
     // Ask the server to clear the Data Store
-	  printWriter.println("CLEAR");
+	  printWriter.println(RouletteV2Protocol.CLEAR);
 	  printWriter.flush();
 	  buffReader.readLine();
   }
@@ -34,7 +34,7 @@ public class RouletteV2ClientImpl extends RouletteV1ClientImpl implements IRoule
     LOG.log(Level.FINE, "Obtain the list of students");
 
     // Ask the server to send the list of the students
-	  printWriter.println("LIST");
+	  printWriter.println(RouletteV2Protocol.CMD_LIST);
 	  printWriter.flush();
 
     // Convert the JSON and put the result in listOfStudent
