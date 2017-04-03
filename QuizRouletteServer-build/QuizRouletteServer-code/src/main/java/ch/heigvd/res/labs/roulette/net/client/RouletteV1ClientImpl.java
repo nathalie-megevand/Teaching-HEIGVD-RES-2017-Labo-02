@@ -111,7 +111,6 @@ public class RouletteV1ClientImpl implements IRouletteV1Client
     printWriter.flush();
 
     // Waits for commfirmation of the server
-    // TODO : think of what to do if server do not send DATA LOADED...
     buffReader.readLine();
 
   }
